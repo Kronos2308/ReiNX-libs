@@ -2,7 +2,7 @@
 
 Atmosphere-libs is a collection of libraries for doing operating system development for the Nintendo Switch.
 
-Licensing
+Licensing.
 =====
 
 This software is licensed under the terms of the GPLv2, with exemptions for specific projects noted below.

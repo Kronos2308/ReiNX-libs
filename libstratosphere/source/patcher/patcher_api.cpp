@@ -171,9 +171,9 @@ namespace ams::patcher {
     }
 
     void LocateAndApplyIpsPatchesToModule(const char *patch_dir_name, size_t protected_size, size_t offset, const ro::ModuleId *module_id, u8 *mapped_module, size_t mapped_size) {
-        /* Inspect all patches from /atmosphere/<patch_dir>/<*>/<*>.ips */
+        /* Inspect all patches from /ReiNX/<patch_dir>/<*>/<*>.ips */
         char path[FS_MAX_PATH+1] = {0};
-        std::snprintf(path, sizeof(path) - 1, "sdmc:/atmosphere/%s", patch_dir_name);
+        std::snprintf(path, sizeof(path) - 1, "sdmc:/ReiNX/%s", patch_dir_name);
 
         DIR *patches_dir = opendir(path);
         struct dirent *pdir_ent;
@@ -184,7 +184,7 @@ namespace ams::patcher {
                     continue;
                 }
 
-                std::snprintf(path, sizeof(path) - 1, "sdmc:/atmosphere/%s/%s", patch_dir_name, pdir_ent->d_name);
+                std::snprintf(path, sizeof(path) - 1, "sdmc:/ReiNX/%s/%s", patch_dir_name, pdir_ent->d_name);
                 DIR *patch_dir = opendir(path);
                 struct dirent *ent;
                 if (patch_dir != NULL) {
@@ -208,7 +208,7 @@ namespace ams::patcher {
                             continue;
                         }
 
-                        std::snprintf(path, sizeof(path) - 1, "sdmc:/atmosphere/%s/%s/%s", patch_dir_name, pdir_ent->d_name, ent->d_name);
+                        std::snprintf(path, sizeof(path) - 1, "sdmc:/ReiNX/%s/%s/%s", patch_dir_name, pdir_ent->d_name, ent->d_name);
                         FILE *f_ips = fopen(path, "rb");
                         if (f_ips == NULL) {
                             continue;

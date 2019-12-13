@@ -191,7 +191,7 @@ namespace ams::boot2 {
         template<typename F>
         void IterateOverFlaggedProgramsOnSdCard(F f) {
             /* Validate that the contents directory exists. */
-            DIR *contents_dir = opendir("sdmc:/atmosphere/contents");
+            DIR *contents_dir = opendir("sdmc:/ReiNX/contents");
             if (contents_dir == nullptr) {
                 return;
             }
@@ -225,7 +225,7 @@ namespace ams::boot2 {
                 /* Read the mitm list off the SD card. */
                 {
                     char path[FS_MAX_PATH];
-                    std::snprintf(mitm_list, sizeof(mitm_list), "sdmc:/atmosphere/contents/%016lx/mitm.lst", static_cast<u64>(program_id));
+                    std::snprintf(mitm_list, sizeof(mitm_list), "sdmc:/ReiNX/contents/%016lx/mitm.lst", static_cast<u64>(program_id));
                     FILE *f = fopen(path, "rb");
                     if (f == nullptr) {
                         return;

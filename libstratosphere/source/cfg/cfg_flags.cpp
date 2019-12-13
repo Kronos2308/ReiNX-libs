@@ -53,13 +53,13 @@ namespace ams::cfg {
 
     bool HasContentSpecificFlag(ncm::ProgramId program_id, const char *flag) {
         char content_flag[FS_MAX_PATH];
-        std::snprintf(content_flag, sizeof(content_flag) - 1, "/atmosphere/contents/%016lx/flags/%s.flag", static_cast<u64>(program_id), flag);
+        std::snprintf(content_flag, sizeof(content_flag) - 1, "/ReiNX/contents/%016lx/flags/%s.flag", static_cast<u64>(program_id), flag);
         return HasFlagFile(content_flag);
     }
 
     bool HasGlobalFlag(const char *flag) {
         char global_flag[FS_MAX_PATH];
-        std::snprintf(global_flag, sizeof(global_flag) - 1, "/atmosphere/flags/%s.flag", flag);
+        std::snprintf(global_flag, sizeof(global_flag) - 1, "/ReiNX/flags/%s.flag", flag);
         return HasFlagFile(global_flag);
     }
 
