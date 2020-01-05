@@ -17,6 +17,7 @@
 #pragma once
 #include "vapours/includes.hpp"
 #include "vapours/defines.hpp"
+#include "vapours/literals.hpp"
 
 #include "vapours/util.hpp"
 #include "vapours/results.hpp"
