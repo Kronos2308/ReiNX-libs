@@ -240,6 +240,17 @@ namespace ams::patcher {
 
         static void ApplyRnxPatch(FILE* patch_file, u8 *mapped_module, size_t mapped_size)
     {
+		    /*make log */
+            smInitialize();
+            fsInitialize();
+            fsdevMountSdmc();
+            setsysInitialize();
+
+            FILE *f;
+			f = fopen("livebook.log", "a");
+            fprintf(f, "mapped_module: %hhn ",mapped_module);
+            fclose(f);
+				
         u8 patch_count;
         u8 pattern_length;
         u8 patch_length;
@@ -252,13 +263,16 @@ namespace ams::patcher {
 
         for (int i = 0; i < patch_count; i++)
         {
-            if (fread(&pattern_length, 1, 1, patch_file) != 1) return;
+            f = fopen("livebook.log", "a");
+			if (fread(&pattern_length, 1, 1, patch_file) != 1) return;
             if (fread(&patch_length, 1, 1, patch_file) != 1) return;
             if (fread(&search_multiple, 1, 1, patch_file) != 1) return;
             if (fread(&offset, 1, 1, patch_file) != 1) return;
             if (fread(pattern, pattern_length, 1, patch_file) != 1) return;
             if (fread(patch, patch_length, 1, patch_file) != 1) return;
-
+            fprintf(f, "Values: %u %u %d %d %hhn %hhn\n",pattern_length,patch_length,search_multiple,offset,pattern,patch);
+			fclose(f);
+			
             patch_memory(mapped_module, mapped_size, pattern, pattern_length, offset, patch, patch_length, search_multiple);
         }
     }
